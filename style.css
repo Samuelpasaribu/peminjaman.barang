@@ -1,0 +1,14 @@
+.item{
+	background: #F48FB1;
+	text-align: center;
+	min-height: 350px;
+	padding: 40px;
+}
+.gambar{
+	width: 300px;
+	height: 150px;
+}
+.contoh{
+	width:400px;
+	height:400px;
+}
