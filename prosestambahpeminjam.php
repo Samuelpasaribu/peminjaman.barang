@@ -1,13 +1,10 @@
 <?php
     include'config/koneksi.php';
-$id_peminjam = $_POST ['id_peminjam'];
-$username = $_POST ['username'];
+$username = $_POST ['nama'];
 $password = $_POST ['password'];
-$nama = $_POST ['nama'];
-$status = $_POST ['status'];
+$kelas = $_POST ['kelas'] . '-' . $_POST['jurusan'] . '-' . $_POST['no'];
 
-        $query = mysql_query ("INSERT INTO peminjam values ('$id_peminjam', '$username','$password',
-        	'$nama', '$status')");
+        $query = mysql_query ("INSERT INTO anggota(nama, password, kelas ) values ('$username','$password', '$kelas')");
         
         if ($query) {
     header("location:peminjam.php");

@@ -83,31 +83,52 @@ include "config/koneksi.php" ?>
                         <input type="hidden" name="id" class="form-control" placeholder="ID..." required>
                     </div>
                     <div class ="form-group">
-                        <label for="exampleInputPassword1">Username </label>
-                        <input type="text"  name="username" class="form-control" placeholder="Username..." required>
+                        <label for="exampleInputPassword1">Nama</label>
+                        <input type="text"  name="nama" class="form-control" placeholder="Username..." required>
                     </div>
                    <div class ="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password"   name="password" 
                         class="form-control" placeholder="Password..." required>
                     </div>
-                     <div class ="form-group">
-                          <label for="exampleInputPassword1">Nama Lengkap</label>
-                          <input type="text"   name="nama" 
-                          class="form-control" placeholder="Nama Lengkap..." required>
+
+                        <div class="row"> 
+                        <label>Kelas</label>
+                    <div class ="form-group">
+                        <div class="col-md-3">
+                          <select name="kelas" class="form-control">
+                            <option value="" disabled selected>- Pilih Kelas -</option>
+                            <option value="10">X</option>
+                            <option value="11">XI</option>
+                            <option value="12">XII</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <select name="jurusan" class="form-control">
+                            <option value="" disabled selected>- Pilih Jurusan -</option>
+                            <option value="RPL">Rekayasa Perangkat Lunak</option>
+                            <option value="MM">Multi Media</option>
+                            <option value="JB">Jasa Boga</option>
+                            <option value="TKJ">Teknik Komputer dan Jaringan</option>
+                            <option value="APH">Akomodasi Perhotelan</option>
+                            <option value="ANM">Animasi</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <select name="no" class="form-control">
+                            <option value="" disabled selected>- Pilih No -</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                          <label for="exampleInputPassword1">Status</label>
-                          <input type="text" name="status" class="form-control" 
-                          placeholder="Kelas.." required>
-                     </div>
-              <div class="box=footer">
-            </div>
-            <tr>
-              <td><button type="submit" class="btn btn-danger">Tambah Data</button></td>
-              <td><a href="barang.php" class="btn btn-danger">Back</td>
-            </tr>
-            </div>
+                        </div>
+               <div class="row" style="margin-top: 20px;">  
+                 <button type="submit" class="btn btn-danger">Tambah Data</button>
+             <a href="peminjam.php" class="btn btn-danger">Back </a>
+               </div>
+           </div>
         </div>
       </div>
     </div>

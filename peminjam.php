@@ -4,6 +4,7 @@ if(!isset($_SESSION['username'])) {
    header('location:login.php'); 
 } else { 
    $username = $_SESSION['username']; 
+   require_once 'config/koneksi.php';
 }
 ?>
 <?php
@@ -45,7 +46,7 @@ include "config/koneksi.php" ?>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i>Etika Rs. <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i><?php echo $_SESSION['username']; ?> <i class="fa fa-caret-down"></i>
               </a>
             <ul class="dropdown-menu dropdown-user">
              <li class="divider"></li>
@@ -54,9 +55,6 @@ include "config/koneksi.php" ?>
             
           </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -75,34 +73,30 @@ include "config/koneksi.php" ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="page-header">Data Peminjam</h2>
-           <a href="tambahpeminjam.php" class="btn btn-danger pull-right"><i class="fa fa-plus"></i> Tambah</a>
+           <a href="tambahpeminjam.php" class="btn btn-danger pull-right" style="margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
               <table id="tabelanggota" class="table table-bordered table-hover">
                      <thead>
                         <tr>
                           <th>No</th>
                           <th>Username</th>
-                          <th>Password</th> 
-                          <th>Nama</th>
-                          <th>Status</th>
-                          <th> </th>
+                          <th>Kelas</th>
+                          <th>Opsi</th>
                         </tr>
                      </thead> 
 
                      <?php
-                     $query = mysql_query("SELECT * FROM peminjam");
+                     $query = mysql_query("SELECT * FROM anggota");
                      $id_peminjam=1;
-                     while ($lihat=mysql_fetch_array($query)){
+                     while ($lihat = mysql_fetch_array($query)){
                       ?>
                       <tbody>
                         <tr>
-                          <td><?php echo $lihat['id_peminjam']; ?></td>
-                          <td><?php echo $lihat['username'];?></td>
-                          <td><?php echo $lihat['password'];?></td>
-                          <td><?php echo $lihat['nama']; ?></td>
-                          <td><?php echo $lihat['status'];?></td>    
+                          <td><?php echo $lihat['id_anggota']; ?></td>
+                          <td><?php echo $lihat['nama'];?></td>
+                          <td><?php echo $lihat['kelas'];?></td>    
 
-                          <td> <a href="editpeminjam.php?id_peminjam=<?php echo $lihat['id_peminjam']; ?>" class="btn btn-danger">Edit</a>
-                          <a href="hapuspeminjam.php?id=<?php echo $lihat['id_peminjam']; ?>" class="btn btn-danger">Hapus</a></td>
+                          <td> <a href="editpeminjam.php?id_peminjam=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Edit</a>
+                          <a href="hapuspeminjam.php?id=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Hapus</a></td>
 
 
                         </tr>
