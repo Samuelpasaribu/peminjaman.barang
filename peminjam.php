@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+if(!isset($_SESSION['admin'])) {
    header('location:login.php'); 
 } else { 
-   $username = $_SESSION['username']; 
+   $username = $_SESSION['admin']; 
    require_once 'config/koneksi.php';
 }
 ?>
@@ -46,7 +46,7 @@ include "config/koneksi.php" ?>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i><?php echo $_SESSION['username']; ?> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i><?php echo $_SESSION['admin']; ?> <i class="fa fa-caret-down"></i>
               </a>
             <ul class="dropdown-menu dropdown-user">
              <li class="divider"></li>
@@ -81,6 +81,7 @@ include "config/koneksi.php" ?>
                           <th>Username</th>
                           <th>Kelas</th>
                           <th>Opsi</th>
+                          <th>Hapus</th>
                         </tr>
                      </thead> 
 
@@ -95,13 +96,17 @@ include "config/koneksi.php" ?>
                           <td><?php echo $lihat['nama'];?></td>
                           <td><?php echo $lihat['kelas'];?></td>    
 
-                          <td> <a href="editpeminjam.php?id_peminjam=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Edit</a>
-                          <a href="hapuspeminjam.php?id=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Hapus</a></td>
+                          <td style=""> 
+                            <a href="buku_pinjam.php?id_anggota=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Lihat Barang <i class="fa fa-eye"></i></a>
+                            <a href="editpeminjam.php?id_peminjam=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Edit</a>
+                          </td>
+                            <td>
+                              <a href="hapuspeminjam.php?id=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
 
 
                         </tr>
                         <?php
-                        $id_peminjam++;
                         } ?>
 
               </table>

@@ -37,14 +37,14 @@ session_start();
 
 <h3>Keranjang Peminjam</h3>
                 <form action="index.php" method="post" id="cart">
-                    <a href="proses_pinjam.php" class="btn btn-primary pull-right">Proses Pinjam</a><br><br>
+                    <a href="proses_pinjam.php?id_anggota=<?php echo $_SESSION['id_anggota']; ?>" class="btn btn-primary pull-right">Proses Pinjam</a><br><br>
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th>Id Barang</th>
                           <th>Nama Barang</th>
                           <th>Foto</th>
-                          <th>Aksi</th>
+                          <th>Hapus</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -59,7 +59,7 @@ session_start();
                         <td><?php echo $rs['id_brg']; ?></td>
                         <td><?php echo $rs['nama_brg']; ?></td>
                         <td><img src="../images/<?php echo $rs['foto']; ?>" width="50" height="25" alt=""></td>
-                        <td><a href="cartfunction.php?act=plus&amp;id_product=<?php echo $key; ?>&amp;ref=view_cart.php"><i class="fa fa-plus"></i></a> | <a href="cartfunction.php?act=min&amp;id_product=<?php echo $key; ?>&amp;ref=view_cart.php"><i class="fa fa-minus"></i></a> | <a href="cartfunction.php?act=del&amp;id_product=<?php echo $key; ?>&amp;ref=view_cart.php"><i class="fa fa-trash"></i></a></td>
+                        <td><a href="cartfunction.php?act=del&amp;id_product=<?php echo $key; ?>&amp;ref=view_cart.php"><i class="fa fa-trash"></i></a></td>
                       </tr>
                       <?php
                                 mysql_free_result($query);

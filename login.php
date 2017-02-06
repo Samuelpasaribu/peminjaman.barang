@@ -16,10 +16,10 @@ background: linear-gradient(to left, #DD5E89 , #F7BB97);">
 
   
              <?php 
-                if(!isset($_session['username'])){
-                    $_session['username']="";
+                if(!isset($_session['admin'])){
+                    $_session['admin']="";
                 }
-                echo $_session['username']; ?>
+                echo $_session['admin']; ?>
        <div class="container">
         <div class="login-container">
                 <div id="output"></div>

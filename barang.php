@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+if(!isset($_SESSION['admin'])) {
    header('location:login.php'); 
 } else { 
-   $username = $_SESSION['username']; 
+   $username = $_SESSION['admin']; 
 }
 ?>
 <?php

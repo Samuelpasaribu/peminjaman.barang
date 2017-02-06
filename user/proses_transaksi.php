@@ -28,14 +28,30 @@ session_start();
 				echo '<p>Nama  : '.$_POST['nama'].'<br>';
 				echo '<p>Kelas : '.$_POST['kelas'].'<br>';
 				echo '<p>Tanggal Pinjam : '.$_POST['tgl_pinjam'].'<br>';
+				$nama = $_POST['nama'];
+				$kelas = $_POST['kelas'];
+				$tgl = $_POST['tgl_pinjam'];
 
-				$d = mysql_query("INSERT INTO peminjaman(id_brg, id_anggota, tgl_pinjam) VALUES (
-											'$_POST[id_brg]',
-											'$_POST[id_anggota]',
-											'$_POST[tgl_pinjam]'
+				$item = $_SESSION['items'];
+				$id_anggota = $_SESSION['id_anggota'];
+				// print_r($id_anggota);
+				// die();
+				foreach ($item as $key => $value) {
+					// echo $value;
+					// echo "INSERT INTO peminjaman(id_brg, id_anggota, tgl_pinjam) VALUES (
+					// 						'$key',
+					// 						'$id_anggota',
+					// 						'$tgl'
+					// 						)" . '<br>';
+
+					$d = mysql_query("INSERT INTO peminjaman(id_brg, id_anggota, tgl_pinjam) VALUES (  			 '$key',
+											'$id_anggota',
+											'$tgl'
 											)") or die(mysql_error());
-				session_destroy();
+				}
+				
 			}
+				session_destroy();
 				echo '<a href="javascript:window.print()"><h3>Cetak</h3></a></font>';
 				echo "<a href='logout.php'>Logout</a>";
 

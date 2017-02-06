@@ -4,6 +4,8 @@ if(!isset($_SESSION['admin'])) {
    header('location:login.php'); 
 } else { 
    $username = $_SESSION['admin']; 
+   require_once 'config/koneksi.php';
+   $query = mysql_query("SELECT * FROM anggota");
 }
 ?>
 <?php
@@ -45,17 +47,15 @@ include "config/koneksi.php" ?>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i>Etika Rs. <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i><?php echo $_SESSION['admin']; ?> <i class="fa fa-caret-down"></i>
               </a>
             <ul class="dropdown-menu dropdown-user">
+             <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
             
           </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -73,41 +73,44 @@ include "config/koneksi.php" ?>
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="page-header">Peminjaman</h2>
-          <div class="row">
-            <a href="tambahpeminjaman.php" class="btn btn-danger pull-right"><i class="fa fa-plus"></i> Tambah</a>
-          </div>
-              <table id="tabelpeminjaman" class="table table-striped table-hover">
+          <h2 class="page-header">Data Barang Yang Di Pinjam</h2>
+          <?php $data = mysql_fetch_array($query); ?>
+          <h4>Nama Anggota : <?php echo $data['nama']; ?></h4>
+           <a href="tambahpeminjam.php" class="btn btn-danger pull-right" style="margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
+              <table id="tabelanggota" class="table table-bordered table-hover">
                      <thead>
                         <tr>
                           <th>No</th>
                           <th>Nama Barang</th>
-                          <th>Nama Peminjam</th>
-                          <th>Tanggal Pinjam</th>
-                          <th>  </th> 
+                          <th>Jenis Barang</th>
+                          <th>Foto</th>
+                          <th>Opsi</th>
                         </tr>
-                     </thead>
+                     </thead> 
+
                      <?php
-                     $sql = "SELECT peminjaman.id_brg, peminjaman.id_anggota, peminjaman.tgl_pinjam, barang.nama_brg, anggota.nama FROM peminjaman JOIN barang ON peminjaman.id_brg=barang.id_brg JOIN anggota ON anggota.id_anggota=peminjaman.id_anggota";
-                     $query = mysql_query($sql);
-                     $no = 1;
-                     while ($lihat=mysql_fetch_array($query)){
+                     $query = mysql_query("SELECT peminjaman.id_brg, peminjaman.id_anggota, peminjaman.tgl_pinjam, barang.nama_brg, barang.jenis_brg, barang.foto FROM peminjaman JOIN barang ON peminjaman.id_brg=barang.id_brg JOIN anggota ON anggota.id_anggota=peminjaman.id_anggota");
+                     $id_peminjam=1;
+                     while ($lihat = mysql_fetch_array($query)){
                       ?>
                       <tbody>
                         <tr>
-                         <td><?php echo $no++ ?></td>
-                          <td><?php echo $lihat ['nama_brg']; ?></td>
-                          <td><?php echo $lihat ['nama'];?></td>
-                          <td><?php echo $lihat ['tgl_pinjam']; ?></td>          
-                          <td> <a href="editpeminjaman.php?id_peminjaman=<?php echo $lihat['id_brg']; ?>" class="btn btn-danger">Edit</a>
-                          <a href="hapuspeminjaman.php?id=<?php echo $lihat['id_brg']; ?>" class="btn btn-danger">Hapus</a></td>
+                          <td><?php echo $id_peminjam++; ?></td>
+                          <td><?php echo $lihat['nama_brg'];?></td>
+                          <td><?php echo $lihat['jenis_brg'];?></td>    
+                          <td><img src="images/<?php echo $lihat['foto'];?>" alt="" width="50px" height="30px"></td>
+                          <td style=""> 
+                            <a href="proses_kembali.php?id_anggota=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Kembalikan Barang <i class="fa fa-refresh"></i></a>
+                          </td>
 
 
                         </tr>
                         <?php
+                        $id_peminjam++;
                         } ?>
-                        </tbody>
+
               </table>
+              
         </div>
       </div>
     </div>

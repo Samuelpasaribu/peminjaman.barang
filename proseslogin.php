@@ -11,7 +11,7 @@
 		$row = mysql_fetch_assoc($query);
 	
 		if($row){
-			$_SESSION['username']=$username;
+			$_SESSION['admin']=$username;
 			header("Location: dashboard.php");				
 		}
 	}

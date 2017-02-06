@@ -35,14 +35,15 @@
 						<h4>Proses Pendataan</h4>
 					</div>
 					<div class="panel-body">
-					<form action="proses_transaksi.php" method="post">
+					<form action="proses_transaksi.php?id_anggota=<?php echo $_SESSION['id_anggota']; ?>" method="post">
 						<div class="form-group">
 							<label for="">Nama</label>
-							<input type="text" name="nama" class="form-control" value="<?php echo $_SESSION['anggota']; ?>">
+							<input type="text" name="nama" class="form-control" disabled value="<?php echo $_SESSION['anggota']; ?>">
+							<input type="hidden" name="nama" class="form-control" value="<?php echo $_SESSION['anggota']; ?>">
 						</div>
 <?php 
-$anggota = $_SESSION['anggota'];
-$query = mysql_query("SELECT * FROM anggota WHERE nama = '$anggota'");
+$anggota = $_SESSION['id_anggota'];
+$query = mysql_query("SELECT * FROM anggota WHERE id_anggota = '$anggota'");
 	while ($data = mysql_fetch_assoc($query)) {
 ?>
 
@@ -59,7 +60,7 @@ $query = mysql_query("SELECT * FROM anggota WHERE nama = '$anggota'");
 						<div class="form-group">
 						<?php 
 						date_default_timezone_set('Asia/Jakarta');
-						$date = date('d' . '-' . 'm' . '-' . 'Y');
+						$date = date('d' . '-' . 'F' . '-' . 'Y');
 						 ?>
 							<label for="">Tgl Pinjam</label>
 							<input type="text" disabled name="tgl_pinjam" class="datepicker form-control" value="<?php echo $date; ?>">

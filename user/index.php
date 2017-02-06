@@ -88,7 +88,7 @@ $alat = mysql_query("SELECT * FROM barang") or die(mysql_error());
                             <img src="../images/<?php echo $foto; ?>" width="200" height="150" alt="">
                             <h4><?php  echo $row_alat['nama_brg']; ?></h4>
                             <p>Stok : <?php echo $row_alat['stok_brg']; ?></p>
-                            <a href="cartfunction.php?act=add&amp;id_product=<?php echo $row_alat['id_brg']; ?>&amp;ref=view_cart.php" class="btn btn-danger" ><font color="white">Pinjam Barang</font></a>
+                            <a href="cartfunction.php?act=add&amp;id_product=<?php echo $row_alat['id_brg']; ?>&amp;id_pembeli=<?php echo $_SESSION['id_anggota']; ?>&amp;ref=view_cart.php" class="btn btn-danger" ><font color="white">Pinjam Barang</font></a>
                         </div>
 
                     <?php

@@ -9,9 +9,10 @@
 		echo '<div class="alert alert-danger">Maaf Login gagal.</div>';
 	}else{
 		$row = mysql_fetch_assoc($query);
-	
+
 		if($row){
 			$_SESSION['anggota'] = $username;
+			$_SESSION['id_anggota'] = $row['id_anggota'];
 			header("Location:index.php");				
 		}
 	}

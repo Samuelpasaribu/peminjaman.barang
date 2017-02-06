@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="beranda.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         
         <li><a href="tentangkami.php">Tentang Kami</a></li>
       </ul>
