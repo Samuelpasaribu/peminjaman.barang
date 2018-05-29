@@ -74,7 +74,7 @@ include "config/koneksi.php" ?>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Edit Peminjaman</h1>
+          <h1 class="page-header">Edit Pengembalian</h1>
 
               <section class="row">
                 <!-- left column -->
@@ -84,12 +84,24 @@ include "config/koneksi.php" ?>
                 <div class="box-header with-border">
                 </div><!--/.box-header-->
                 <?php
-                  $id = $_GET['id_peminjaman'];
-                  $query = $mysqli->query("SELECT * FROM peminjaman INNER JOIN anggota ON peminjaman.id_anggota=anggota.id_anggota where id_peminjaman='$id'");
+                  $id = $_GET['id_pengembalian'];
+                  $query = $mysqli->query("SELECT pengembalian.*,
+                            barang.id_brg,
+                            barang.nama_brg,
+                            peminjaman.id_peminjaman,
+                            peminjaman.tgl_pinjam,
+                            peminjaman.status,
+                            anggota.id_anggota,
+                            anggota.nama
+                            FROM pengembalian JOIN barang
+                            ON pengembalian.id_brg=barang.id_brg JOIN anggota
+                            ON pengembalian.id_anggota=anggota.id_anggota JOIN peminjaman
+                            ON peminjaman.id_peminjaman=pengembalian.id_peminjaman
+                            WHERE pengembalian.id='$id'");
                   $qu = mysqli_fetch_array($query);
                     ?>
                   <!-- form start -->
-                  <form role="form" action="proseseditpeminjaman.php" method="post">
+                  <form role="form" action="proseseditpengembalian.php?id=<?= $id ?>" method="post">
                   <div class = "box-body">
                   <div class ="form-group">
                     <label for="exampleInputEmail1">ID</label>
@@ -98,37 +110,20 @@ include "config/koneksi.php" ?>
                     </div>
                     <div class ="form-group">
                     <label for="exampleInputPassword1">Nama Barang</label>
-                    <select class="form-control" name="id_barang">
-                      <?php
-                      $query = $mysqli->query('SELECT * FROM barang');
-                        while($result = mysqli_fetch_array($query)) {
-                      ?>
-                        <option value="<?php echo $result['id_brg'] ?>" <?php echo $result['id_brg'] == $qu['id_brg'] ? 'selected'  : ' ' ?>> <?php echo $result['nama_brg']; ?> </option>
-                      <?php } ?>
-                    </select>
+                    <input type="text" name="nama_brg" readonly="" class="form-control" value="<?= $qu['nama_brg'] ?>">
                     </div>
                    <div class ="form-group">
                     <label for="exampleInputPassword1">Nama Peminjam</label>
-                    <select class="form-control" name="id_anggota">
-                      <?php
-                      $query = $mysqli->query('SELECT * FROM anggota');
-                        while($result = mysqli_fetch_array($query)) {
-                      ?>
-                        <option value="<?php echo $result['id_anggota'] ?>" <?php echo $result['id_anggota'] == $qu['id_anggota'] ? 'selected'  : ' ' ?>> <?php echo $result['nama']; ?> </option>
-                      <?php } ?>
-                    </select>
+                    <input type="text" name="nama" class="form-control" value="<?= $qu['nama'] ?>" readonly>
                     </div>
                      <div class ="form-group">
-                    <label for="exampleInputPassword1">Tanggal Peminjaman</label>
+                    <label for="exampleInputPassword1">Tanggal Pinjam</label>
                    <input type="date" value="<?php echo date('Y-m-d', strtotime($qu['tgl_pinjam'])) ?>"  name="tgl_pinjam"
-                    class="form-control datepicker" required>
+                    class="form-control datepicker" required readonly>
                     </div>
-                    <div class ="form-group">
-                    <label for="exampleInputPassword1">Status Peminjaman</label>
-                    <select name="status" class="form-control">
-                      <option value="1" <?php echo $qu['status'] == 1 ? 'selected' : ' ' ?>>Sudah Dikembalikan</option>
-                      <option value="0" <?php echo $qu['status'] == 0 ? 'selected' : ' ' ?>>Belum Dikembalikan</option>
-                    </select>
+                    <div class="form-group">
+                      <label>Tanggal Kembali</label>
+                      <input type="date" name="tgl_kembali" class="form-control" value="<?= date('Y-m-d', strtotime($qu['tgl_kembali'])) ?>">
                     </div>
 
              <div class="box-footer">

@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
 }
 ?>
 <?php
@@ -45,13 +45,13 @@ include "config/koneksi.php"; ?>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i>Etika Rs. <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i>Admin <i class="fa fa-caret-down"></i>
               </a>
             <ul class="dropdown-menu dropdown-user">
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -65,13 +65,13 @@ include "config/koneksi.php"; ?>
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
+            <li class=""><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
             <li><a href="barang.php"><i class="fa fa-laptop">&nbsp;&nbsp;&nbsp;Barang</i></a></li>
-            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Peminjam</i></a></li>
+            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Anggota</i></a></li>
             <li><a href="peminjaman.php"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="pengembalian.php"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="page-header">Data Barang</h2>
@@ -84,37 +84,37 @@ include "config/koneksi.php"; ?>
                           <th>Kode Barang</th>
                           <th>Nama Barang</th>
                           <th>Jenis Barang</th>
-                          <th>Stok Barang</th> 
+                          <th>Stok Barang</th>
                           <th>Foto</th>
                           <th>Opsi</th>
                         </tr>
                      </thead>
 
                 <?php
-                     $query = mysql_query("SELECT * FROM barang ");
+                     $query = $mysqli->query("SELECT * FROM barang ");
                      $id_brg=1;
-                     while ($lihat=mysql_fetch_array($query)){
+                     while ($lihat=mysqli_fetch_array($query)){
                       ?>
                       <tbody>
                         <tr>
                           <td><?php echo $id_brg++; ?></td>
-                          <td><?php echo $lihat ['nama_brg']; ?></td>
-                          <td><?php echo $lihat ['jenis_brg'];?></td>
-                          <td><?php echo $lihat ['stok_brg']; ?></td> 
-                          <td><img src="images/<?php echo $lihat['foto']; ?>" alt="" width="50" height="25"></td> 
+                          <td><?php echo $lihat['nama_brg']; ?></td>
+                          <td><?php echo $lihat['jenis_brg'];?></td>
+                          <td><?php echo $lihat['stok_brg']; ?></td>
+                          <td><img src="images/<?php echo $lihat['foto']; ?>" alt="" width="50" height="25"></td>
                           <td> <a href="editbrg.php?id_brg=<?php echo $lihat['id_brg']; ?>" class="btn btn-danger">&nbsp;&nbsp;Edit</a>
                           <a href="hapusbrg.php?id=<?php echo $lihat['id_brg']; ?>" class="btn btn-danger">Hapus</a>
                           </td>
 
-                          
+
 
                         </tr>
                         <?php
-                        
+
                         } ?>
 
                       </tbody>
-                     
+
               </table>
         </div>
       </div>

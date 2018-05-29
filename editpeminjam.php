@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
 }
 ?>
 <?php
@@ -51,7 +51,7 @@ include "config/koneksi.php" ?>
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -67,15 +67,15 @@ include "config/koneksi.php" ?>
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
             <li><a href="barang.php"><i class="fa fa-laptop">&nbsp;&nbsp;&nbsp;Barang</i></a></li>
-            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Peminjam</i></a></li>
+            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Anggota</i></a></li>
             <li><a href="#"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="#"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Edit Peminjam</h1>
-              
+          <h1 class="page-header">Edit Anggota</h1>
+
               <section class="row">
                 <!-- left column -->
                 <div class="col-md-12">
@@ -85,50 +85,48 @@ include "config/koneksi.php" ?>
                 </div><!--/.box-header-->
                 <?php
                   $id_peminjam = $_GET['id_peminjam'];
-                  $query = mysql_query("SELECT * FROM peminjam where id_peminjam='$id_peminjam'");
-                  while ($qu = mysql_fetch_array($query)){
+                  $query = $mysqli->query("SELECT * FROM anggota where id_anggota='$id_peminjam'");
+
+                  while ($qu = mysqli_fetch_array($query)){
                     ?>
                   <!-- form start -->
                   <form role="form" action="proseseditpeminjam.php" method="post">
                   <div class = "box-body">
                   <div class ="form-group">
                     <label for="exampleInputEmail1">No</label>
-                    <input type="text" disable value="<?php echo $qu['id_peminjam'] ?>" name="id_peminjam" class="form-control" placeholder="" disabled>
-                    <input type="hidden" value="<?= $qu['id_peminjam']; ?>" name="id_peminjam">
+                    <input type="text" disable value="<?php echo $qu['id_anggota'] ?>" name="id_peminjam" class="form-control" placeholder="" disabled>
+                    <input type="hidden" value="<?= $qu['id_anggota']; ?>" name="id_peminjam">
                     </div>
                     <div class ="form-group">
                     <label for="exampleInputPassword1">Username </label>
-                    <input type="text"  value="<?php echo$qu['username'] ?>" name="username" 
+                    <input type="text"  value="<?php echo$qu['nama'] ?>" name="username"
                     class="form-control" placeholder="" required>
                     </div>
                     <div class ="form-group">
                     <label for="exampleInputPassword1">Password </label>
-                    <input type="text"  value="<?php echo$qu['password'] ?>" name="password" 
+                    <input type="password"  value="<?php echo$qu['password'] ?>" name="password"
                     class="form-control" placeholder="" required>
                     </div>
-                     <div class ="form-group">
-                    <label for="exampleInputPassword1">Nama </label>
-                    <input type="text"  value="<?php echo$qu['nama'] ?>" name="nama" 
-                    class="form-control" placeholder="" required>
+                    <div class ="form-group">
+                      <label for="exampleInputPassword1">Kelas </label>
+                      <input type="text" disabled value="<?php echo$qu['kelas'] ?>" name="kelas"
+                      class="form-control" placeholder="" required>
                     </div>
-                   <div class ="form-group">
-                    <label for="exampleInputPassword1">Status</label>
-                    <input type="text"  value="<?php echo$qu['status'] ?>" name="status" 
-                    class="form-control" placeholder="" required>
-                    </div>
-                  
+
                 <?php
                 }
             ?>
-                  
+
              <div class="box-footer">
-            </div>      
-            <button type="submit" class="btn btn-danger">Simpan</button> 
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-danger">Simpan</button>
             <a href="peminjam.php" class="btn btn-danger">Back</a>
             </div>
-            </form> 
+            </form>
             </section><!-- /.content -->
-          
+
           </div>
         </div>
       </div>

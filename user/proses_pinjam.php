@@ -1,9 +1,9 @@
-<?php 
+<?php
     require_once("config.inc.php");
     if (!isset($_SESSION)) {
         session_start();
     }
-    
+
  //    if(!isset($_SESSION['myusername']))
 	// {
 	// 	header("location:newlogin.php");
@@ -25,7 +25,7 @@
     <link href="../bootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  
+
 
 		<div class="container">
 			<div class="row" style="margin-top: 50px">
@@ -41,10 +41,10 @@
 							<input type="text" name="nama" class="form-control" disabled value="<?php echo $_SESSION['anggota']; ?>">
 							<input type="hidden" name="nama" class="form-control" value="<?php echo $_SESSION['anggota']; ?>">
 						</div>
-<?php 
+<?php
 $anggota = $_SESSION['id_anggota'];
-$query = mysql_query("SELECT * FROM anggota WHERE id_anggota = '$anggota'");
-	while ($data = mysql_fetch_assoc($query)) {
+$query = $mysqli->query("SELECT * FROM anggota WHERE id_anggota = '$anggota'");
+	while ($data = mysqli_fetch_assoc($query)) {
 ?>
 
 
@@ -56,9 +56,9 @@ $query = mysql_query("SELECT * FROM anggota WHERE id_anggota = '$anggota'");
         	</div>
 	<?php	}
  ?>
-        
+
 						<div class="form-group">
-						<?php 
+						<?php
 						date_default_timezone_set('Asia/Jakarta');
 						$date = date('d' . '-' . 'F' . '-' . 'Y');
 						 ?>
@@ -67,7 +67,7 @@ $query = mysql_query("SELECT * FROM anggota WHERE id_anggota = '$anggota'");
 							<input type="hidden" name="tgl_pinjam" class="datepicker form-control" value="<?php echo $date; ?>">
 
 						</div>
-						
+
 						<button type="submit" name="finish" class="btn btn-block btn-primary">Proses</button>
 		<div id="footer" style="margin-top: 40px">
 			<p id="footnote">
@@ -80,17 +80,17 @@ $query = mysql_query("SELECT * FROM anggota WHERE id_anggota = '$anggota'");
 				<div class="col-md-4 ">
 					<h3>Barang yang Di Pinjam</h3>
 					<?php
-							 
+
 							  if (isset($_SESSION['items'])) {
 							        foreach ($_SESSION['items'] as $key => $val){
-							            $query = mysql_query ("SELECT * FROM barang WHERE barang.id_brg = '$key'");
-							            $rs = mysql_fetch_array ($query);
+							            $query = $mysqli->query("SELECT * FROM barang WHERE barang.id_brg = '$key'");
+							            $rs = mysqli_fetch_array($query);
 							  ?>
 						<img src="../images/<?php echo $rs['foto']; ?>" class="thumbnail" width="250" height="100" alt="">
 						<h3><?php echo $rs['nama_brg']; ?></h3>
 						<input type="hidden" name="id_brg" value="<?php echo $val; ?>" class="form-control">
 					<?php
-					            mysql_free_result($query);
+					            mysqli_free_result($query);
 					        }
 					 	 }
 					  ?>

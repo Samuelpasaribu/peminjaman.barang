@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
 }
 ?>
 <?php
@@ -51,7 +51,7 @@ include "config/koneksi.php" ?>
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -65,22 +65,20 @@ include "config/koneksi.php" ?>
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
+            <li class=""><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
             <li><a href="barang.php"><i class="fa fa-laptop">&nbsp;&nbsp;&nbsp;Barang</i></a></li>
-            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Peminjam</i></a></li>
+            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Anggota</i></a></li>
             <li><a href="peminjaman.php"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="pengembalian.php"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="page-header">Tambah Peminjam</h2>
-          <form role="form1" action="prosestambahpeminjam.php" method="post">  
+          <h2 class="page-header">Tambah Anggota</h2>
+          <form role="form1" action="prosestambahpeminjam.php" method="post">
              <table>
                  <div class = "box-body">
                      <div class ="form-group">
-                        <label for="exampleInputEmail1">ID </label>
-                        <input type="hidden" name="id" class="form-control" placeholder="ID..." required>
                     </div>
                     <div class ="form-group">
                         <label for="exampleInputPassword1">Nama</label>
@@ -88,11 +86,11 @@ include "config/koneksi.php" ?>
                     </div>
                    <div class ="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password"   name="password" 
+                        <input type="password"   name="password"
                         class="form-control" placeholder="Password..." required>
                     </div>
 
-                        <div class="row"> 
+                        <div class="row">
                         <label>Kelas</label>
                     <div class ="form-group">
                         <div class="col-md-3">
@@ -124,7 +122,7 @@ include "config/koneksi.php" ?>
                         </div>
                     </div>
                         </div>
-               <div class="row" style="margin-top: 20px;">  
+               <div class="row" style="margin-top: 20px;">
                  <button type="submit" class="btn btn-danger">Tambah Data</button>
              <a href="peminjam.php" class="btn btn-danger">Back </a>
                </div>

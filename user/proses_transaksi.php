@@ -1,6 +1,6 @@
-<?php 
+<?php
 require_once "../config/koneksi.php";
-session_start(); 
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ session_start();
 <body>
 <!--start: Wrapper-->
 	<div id="wrapper">
-				
+
 		<!-- start: Container -->
 		<div class="container">
 			<!-- start: Table -->
@@ -44,12 +44,12 @@ session_start();
 					// 						'$tgl'
 					// 						)" . '<br>';
 
-					$d = mysql_query("INSERT INTO peminjaman(id_brg, id_anggota, tgl_pinjam) VALUES (  			 '$key',
+					$d = $mysqli->query("INSERT INTO peminjaman(id_brg, id_anggota, tgl_pinjam) VALUES (  			 '$key',
 											'$id_anggota',
 											'$tgl'
-											)") or die(mysql_error());
+											)") or die(mysqli_error());
 				}
-				
+
 			}
 				session_destroy();
 				echo '<a href="javascript:window.print()"><h3>Cetak</h3></a></font>';
@@ -58,13 +58,13 @@ session_start();
 	?>
 
                    </div>
-				
+
 			<!-- end: Table -->
 
 		</div>
 		<!-- end: Container -->
-				
+
 	</div>
-	<!-- end: Wrapper  -->			
+	<!-- end: Wrapper  -->
 </body>
 </html>

@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
 }
 ?>
 <?php
@@ -51,7 +51,7 @@ include "config/koneksi.php" ?>
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -71,11 +71,11 @@ include "config/koneksi.php" ?>
             <li><a href="#"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="#"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Edit Barang</h1>
-              
+
               <section class="row">
                 <!-- left column -->
                 <div class="col-md-12">
@@ -85,8 +85,8 @@ include "config/koneksi.php" ?>
                 </div><!--/.box-header-->
                 <?php
                   $id_brg = $_GET['id_brg'];
-                  $query = mysql_query("SELECT * FROM barang where id_brg='$id_brg'");
-                  while ($qu = mysql_fetch_array($query)){
+                  $query = $mysqli->query("SELECT * FROM barang where id_brg='$id_brg'");
+                  while ($qu = mysqli_fetch_array($query)){
                     ?>
                   <!-- form start -->
                   <form role="form" action="proseseditbrg.php" method="post">
@@ -98,32 +98,32 @@ include "config/koneksi.php" ?>
                     </div>
                     <div class ="form-group">
                     <label for="exampleInputPassword1">Nama Barang</label>
-                    <input type="text"  value="<?php echo$qu['nama_brg'] ?>" name="nama_brg" 
+                    <input type="text"  value="<?php echo$qu['nama_brg'] ?>" name="nama_brg"
                     class="form-control" placeholder="" required>
                     </div>
                    <div class ="form-group">
                     <label for="exampleInputPassword1">Jenis Barang</label>
-                    <input type="text"  value="<?php echo$qu['jenis_brg'] ?>" name="jenis_brg" 
+                    <input type="text"  value="<?php echo$qu['jenis_brg'] ?>" name="jenis_brg"
                     class="form-control" placeholder="" required>
                     </div>
                      <div class ="form-group">
                     <label for="exampleInputPassword1">Stok Barang</label>
-                    <input type="text"  value="<?php echo$qu['stok_brg'] ?>" name="stok_brg" 
+                    <input type="text"  value="<?php echo$qu['stok_brg'] ?>" name="stok_brg"
                     class="form-control" placeholder="" required>
                     </div>
-                  
+
                 <?php
                 }
             ?>
-                  
+
              <div class="box-footer">
-            </div>      
-            <button type="submit" class="btn btn-danger">Simpan</button> 
+            </div>
+            <button type="submit" class="btn btn-danger">Simpan</button>
             <a href="barang.php" class="btn btn-danger">Back</a>
             </div>
-            </form> 
+            </form>
             </section><!-- /.content -->
-          
+
           </div>
         </div>
       </div>

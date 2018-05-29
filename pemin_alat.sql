@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 02, 2017 at 11:24 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Host: localhost:3306
+-- Generation Time: Feb 14, 2018 at 11:06 AM
+-- Server version: 5.7.21-0ubuntu0.17.10.1
+-- PHP Version: 7.1.11-0ubuntu0.17.10.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -57,9 +57,8 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama`, `password`, `kelas`) VALUES
-(1, 'etika', 'etika', '12-RPL-2'),
-(2, '', '', '--'),
-(3, 'adam', 'adam', '12-RPL-2');
+(3, 'adams', 'adam', '12-RPL-2'),
+(5, 'etika', '123', '11-RPL-2');
 
 -- --------------------------------------------------------
 
@@ -80,8 +79,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_brg`, `nama_brg`, `jenis_brg`, `stok_brg`, `foto`) VALUES
-(1, 'monitor', 'elektronik', '2', '01-02-2017-Cara-Memperbaiki-Proyektor_2.jpg'),
-(2, 'laptop', 'elektronik', '5', '01-02-2017-index.jpg'),
+(1, 'monitor', 'elektroniks', '3', '01-02-2017-Cara-Memperbaiki-Proyektor_2.jpg'),
+(2, 'laptop', 'elektronik', '6', '01-02-2017-index.jpg'),
 (3, 'mixer audio', 'elektronik', '2', '01-02-2017-Mixing_console.jpg'),
 (4, 'audio ', 'elektronik', '3', '01-02-2017-Pengeras_suara_GMC_888f_(2).jpg');
 
@@ -95,16 +94,17 @@ CREATE TABLE `peminjaman` (
   `id_peminjaman` int(10) NOT NULL,
   `id_brg` int(11) NOT NULL,
   `id_anggota` int(11) NOT NULL,
-  `tgl_pinjam` varchar(40) COLLATE utf8_unicode_ci NOT NULL
+  `tgl_pinjam` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id_peminjaman`, `id_brg`, `id_anggota`, `tgl_pinjam`) VALUES
-(6, 1, 1, '02-02-2017'),
-(7, 1, 3, '02-02-2017');
+INSERT INTO `peminjaman` (`id_peminjaman`, `id_brg`, `id_anggota`, `tgl_pinjam`, `status`) VALUES
+(2, 3, 3, '2018-02-01', 1),
+(3, 4, 3, '14-February-2018', 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +117,6 @@ CREATE TABLE `pengembalian` (
   `id_brg` int(11) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `id_peminjaman` int(11) NOT NULL,
-  `tgl_pinjam` date NOT NULL,
   `tgl_kembali` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -125,8 +124,8 @@ CREATE TABLE `pengembalian` (
 -- Dumping data for table `pengembalian`
 --
 
-INSERT INTO `pengembalian` (`id`, `id_brg`, `id_anggota`, `id_peminjaman`, `tgl_pinjam`, `tgl_kembali`) VALUES
-(1, 11, 11, 1, '2017-01-10', '2017-01-13');
+INSERT INTO `pengembalian` (`id`, `id_brg`, `id_anggota`, `id_peminjaman`, `tgl_kembali`) VALUES
+(2, 3, 3, 2, '2018-02-15');
 
 --
 -- Indexes for dumped tables
@@ -182,7 +181,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `barang`
 --
@@ -192,12 +191,12 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_peminjaman` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

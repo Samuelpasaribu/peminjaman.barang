@@ -11,18 +11,18 @@
  </head>
     <body>
 
-    <?php 
-    include "navbar.php"; 
+    <?php
+    include "navbar.php";
     include "carousel.php";
-    ?> 
+    ?>
     </br></br></br></br></br></br></br></br></br></br>
 
-  
+
 
 <!--footer-->
 
 <div class="container-fluid" style="background: #000;">
-  <p style="text-align: center; padding: 8px; color: white;">CopyRight Etika</p>
+  <p style="text-align: center; padding: 8px; color: white;">CopyRight Ahfahz Ilham</p>
 </div>
 
 

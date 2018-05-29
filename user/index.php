@@ -1,6 +1,6 @@
 <?php
-session_start(); 
-include("config.inc.php"); 
+session_start();
+include("config.inc.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,26 +61,26 @@ include("config.inc.php");
             <ul class="dropdown-menu dropdown-user">
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
-				
+
 
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-			
+
     </nav>
             <h3 style="text-align:center;">Daftar Alat</h3>
 
 <?php
 //List produk dari database
-$alat = mysql_query("SELECT * FROM barang") or die(mysql_error());
+$alat = $mysqli->query("SELECT * FROM barang") or die(mysql_error());
 ?>
         <div id="container">
                     <?php
-                    while ($row_alat = mysql_fetch_array($alat))
+                    while ($row_alat = mysqli_fetch_array($alat))
                         {
                             $foto = $row_alat['foto'];
                       ?>
@@ -95,7 +95,7 @@ $alat = mysql_query("SELECT * FROM barang") or die(mysql_error());
                          }
                     ?>
                     </ul>
-       
+
 
     </div>
     <!-- /.container -->
@@ -108,7 +108,7 @@ $alat = mysql_query("SELECT * FROM barang") or die(mysql_error());
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Etika Rs</p>
+                    <p>Copyright &copy; Ahfahz Ilham</p>
                 </div>
             </div>
         </footer>
@@ -119,45 +119,45 @@ $alat = mysql_query("SELECT * FROM barang") or die(mysql_error());
     <!-- jQuery -->
    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 <script>
-$(document).ready(function(){	
+$(document).ready(function(){
 		$(".form-item").submit(function(e){
 			var form_data = $(this).serialize();
 			var button_content = $(this).find('button[type=submit]');
-			button_content.html('Adding...'); //Loading button text 
+			button_content.html('Adding...'); //Loading button text
 
 			$.ajax({ //request ajax ke cart_process.php
 				url: "cart_process.php",
 				type: "POST",
-				dataType:"json", 
+				dataType:"json",
 				data: form_data
 			}).done(function(data){ //Jika Ajax berhasil
 				$("#cart-info").html(data.items); //total items di cart-info element
 				button_content.html('BELI'); //
-				alert("Item telah dimasukan ke keranjang belanja anda"); 
+				alert("Item telah dimasukan ke keranjang belanja anda");
 				if($(".shopping-cart-box").css("display") == "block"){
-					$(".cart-box").trigger( "click" ); 
+					$(".cart-box").trigger( "click" );
 				}
 			})
 			e.preventDefault();
 		});
 
 	//menampilkan item ke keranjang belanja
-	$( ".cart-box").click(function(e) { 
-		e.preventDefault(); 
-		$(".shopping-cart-box").fadeIn(); 
+	$( ".cart-box").click(function(e) {
+		e.preventDefault();
+		$(".shopping-cart-box").fadeIn();
 		$("#shopping-cart-results").html('<img src="images/ajax-loader.gif">'); //menampilkan loading gambar
 		$("#shopping-cart-results" ).load( "cart_process.php", {"load_cart":"1"}); //membuat permintaan ajax menggunakan dengan jQuery Load() & update
 	});
-	
+
 	//keluar keranjang belanja
 	$( ".close-shopping-cart-box").click(function(e){ //fungsi klik pengguna pada keranjang belanja
-		e.preventDefault(); 
+		e.preventDefault();
 		$(".shopping-cart-box").fadeOut(); //keluar keranjang belanka
 	});
-	
+
 	//Menghapus item dari keranjang
 	$("#shopping-cart-results").on('click', 'a.remove-item', function(e) {
-		e.preventDefault(); 
+		e.preventDefault();
 		var pcode = $(this).attr("data-code"); //mendapatkan get produk
 		$(this).parent().fadeOut(); //menghapus elemen item dari kotak
 		$.getJSON( "cart_process.php", {"remove_code":pcode} , function(data){ //mendapatkan Harga Barang dari Server

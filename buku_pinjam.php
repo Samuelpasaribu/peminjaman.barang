@@ -1,11 +1,11 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
    require_once 'config/koneksi.php';
-   $query = mysql_query("SELECT * FROM anggota");
+   $query = mysqli_query("SELECT * FROM anggota");
 }
 ?>
 <?php
@@ -53,7 +53,7 @@ include "config/koneksi.php" ?>
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
         </div>
@@ -70,7 +70,7 @@ include "config/koneksi.php" ?>
             <li><a href="peminjaman.php"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="pengembalian.php"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="page-header">Data Barang Yang Di Pinjam</h2>
@@ -86,7 +86,7 @@ include "config/koneksi.php" ?>
                           <th>Foto</th>
                           <th>Opsi</th>
                         </tr>
-                     </thead> 
+                     </thead>
 
                      <?php
                      $query = mysql_query("SELECT peminjaman.id_brg, peminjaman.id_anggota, peminjaman.tgl_pinjam, barang.nama_brg, barang.jenis_brg, barang.foto FROM peminjaman JOIN barang ON peminjaman.id_brg=barang.id_brg JOIN anggota ON anggota.id_anggota=peminjaman.id_anggota");
@@ -97,9 +97,9 @@ include "config/koneksi.php" ?>
                         <tr>
                           <td><?php echo $id_peminjam++; ?></td>
                           <td><?php echo $lihat['nama_brg'];?></td>
-                          <td><?php echo $lihat['jenis_brg'];?></td>    
+                          <td><?php echo $lihat['jenis_brg'];?></td>
                           <td><img src="images/<?php echo $lihat['foto'];?>" alt="" width="50px" height="30px"></td>
-                          <td style=""> 
+                          <td style="">
                             <a href="proses_kembali.php?id_anggota=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Kembalikan Barang <i class="fa fa-refresh"></i></a>
                           </td>
 
@@ -110,7 +110,7 @@ include "config/koneksi.php" ?>
                         } ?>
 
               </table>
-              
+
         </div>
       </div>
     </div>

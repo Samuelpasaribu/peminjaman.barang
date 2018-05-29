@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
    require_once 'config/koneksi.php';
 }
 ?>
@@ -52,7 +52,7 @@ include "config/koneksi.php" ?>
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
         </div>
@@ -63,16 +63,16 @@ include "config/koneksi.php" ?>
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
+            <li class=""><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
             <li><a href="barang.php"><i class="fa fa-laptop">&nbsp;&nbsp;&nbsp;Barang</i></a></li>
-            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Peminjam</i></a></li>
+            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Anggota</i></a></li>
             <li><a href="peminjaman.php"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="pengembalian.php"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="page-header">Data Peminjam</h2>
+          <h2 class="page-header">Data Anggota</h2>
            <a href="tambahpeminjam.php" class="btn btn-danger pull-right" style="margin-bottom: 20px;"><i class="fa fa-plus"></i> Tambah</a>
               <table id="tabelanggota" class="table table-bordered table-hover">
                      <thead>
@@ -83,21 +83,21 @@ include "config/koneksi.php" ?>
                           <th>Opsi</th>
                           <th>Hapus</th>
                         </tr>
-                     </thead> 
+                     </thead>
 
                      <?php
-                     $query = mysql_query("SELECT * FROM anggota");
+                     $query = $mysqli->query("SELECT * FROM anggota");
                      $id_peminjam=1;
-                     while ($lihat = mysql_fetch_array($query)){
+                     while ($lihat = mysqli_fetch_array($query)){
                       ?>
                       <tbody>
                         <tr>
                           <td><?php echo $lihat['id_anggota']; ?></td>
                           <td><?php echo $lihat['nama'];?></td>
-                          <td><?php echo $lihat['kelas'];?></td>    
+                          <td><?php echo $lihat['kelas'];?></td>
 
-                          <td style=""> 
-                            <a href="buku_pinjam.php?id_anggota=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Lihat Barang <i class="fa fa-eye"></i></a>
+                          <td style="">
+                            <!-- <a href="buku_pinjam.php?id_anggota=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Lihat Barang <i class="fa fa-eye"></i></a> -->
                             <a href="editpeminjam.php?id_peminjam=<?php echo $lihat['id_anggota']; ?>" class="btn btn-danger">Edit</a>
                           </td>
                             <td>
@@ -110,7 +110,7 @@ include "config/koneksi.php" ?>
                         } ?>
 
               </table>
-              
+
         </div>
       </div>
     </div>

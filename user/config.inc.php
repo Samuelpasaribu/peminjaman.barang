@@ -1,9 +1,8 @@
 <?php
 $host = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $db = "pemin_alat";
-mysql_connect($host,$username,$password) or die(mysql_error());
-mysql_select_db($db) or die(mysql_error());
+$mysqli = new mysqli($host,$username,$password, $db) or die('koneksi error');
 
 ?>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
+   header('location:login.php');
+} else {
    $admin = $_SESSION['admin'];
 }
 ?>
@@ -43,15 +43,19 @@ if(!isset($_SESSION['admin'])) {
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i>user<i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i>Admin <i class="fa fa-caret-down"></i>
               </a>
             <ul class="dropdown-menu dropdown-user">
+             <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
-        </div>  
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
       </div>
     </nav>
 
@@ -59,17 +63,17 @@ if(!isset($_SESSION['admin'])) {
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
+            <li class=""><a href="#"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
               <li><a href="barang.php"><i class="fa fa-laptop">&nbsp;&nbsp;&nbsp;Barang</i></a></li>
-              <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Peminjam</i></a></li>
+              <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Anggota</i></a></li>
             <li><a href="peminjaman.php"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="pengembalian.php"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1>
-          
+
 
          <div class="row">
          <div class="col-md-4">
@@ -79,10 +83,10 @@ if(!isset($_SESSION['admin'])) {
               <div class="col-md-3">
                 <i class="fa fa-book fa-4x"></i>
               </div>
-              <?php 
+              <?php
               require 'config/koneksi.php';
-                $query = mysql_query("SELECT count(id_brg) as a FROM barang");
-                $data = mysql_fetch_assoc($query);
+                $query = $mysqli->query("SELECT count(id_brg) as a FROM barang");
+                $data = mysqli_fetch_assoc($query);
                 ?>
                 <h2><?php echo $data['a']; ?>  Barang</h2>
             </div>

@@ -1,4 +1,4 @@
-<?php require_once "config.inc.php"; 
+<?php require_once "config.inc.php";
 session_start();
 ?>
 <!DOCTYPE html>
@@ -51,9 +51,9 @@ session_start();
                         <?php
                       if (isset($_SESSION['items'])) {
                             foreach ($_SESSION['items'] as $key => $val){
-                                $query = mysql_query ("SELECT barang.id_brg, barang.nama_brg, barang.foto FROM barang WHERE barang.id_brg = '$key'");
-                                $rs = mysql_fetch_array($query);
-                                  
+                                $query = $mysqli->query("SELECT barang.id_brg, barang.nama_brg, barang.foto FROM barang WHERE barang.id_brg = '$key'");
+                                $rs = mysqli_fetch_array($query);
+
                       ?>
                       <tr>
                         <td><?php echo $rs['id_brg']; ?></td>
@@ -62,7 +62,7 @@ session_start();
                         <td><a href="cartfunction.php?act=del&amp;id_product=<?php echo $key; ?>&amp;ref=view_cart.php"><i class="fa fa-trash"></i></a></td>
                       </tr>
                       <?php
-                                mysql_free_result($query);
+                                mysqli_free_result($query);
                             }
                       }
                       ?>
@@ -70,7 +70,7 @@ session_start();
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td><a href="cartfunction.php?act=clear&amp;ref=index.php">Clear</a></td>
+                        <td><a href="cartfunction.php?act=clear&amp;ref=index.php">Hapus Semua</a></td>
                       </tr>
                       </tbody>
                     </table>

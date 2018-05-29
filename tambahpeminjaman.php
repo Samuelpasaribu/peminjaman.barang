@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['admin'])) {
-   header('location:login.php'); 
-} else { 
-   $username = $_SESSION['admin']; 
+   header('location:login.php');
+} else {
+   $username = $_SESSION['admin'];
 }
 ?>
 <?php
@@ -45,13 +45,13 @@ include "config/koneksi.php" ?>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i>Etika Rs. <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i>Admin <i class="fa fa-caret-down"></i>
               </a>
             <ul class="dropdown-menu dropdown-user">
              <li class="divider"></li>
               <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
-            
+
           </li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -65,25 +65,20 @@ include "config/koneksi.php" ?>
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
+            <li class=""><a href="dashboard.php"><i class="fa fa-dashboard">&nbsp;&nbsp;&nbsp;Dashboard</i></a></li>
             <li><a href="barang.php"><i class="fa fa-laptop">&nbsp;&nbsp;&nbsp;Barang</i></a></li>
-            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Peminjam</i></a></li>
+            <li><a href="peminjam.php"><i class="fa fa-user">&nbsp;&nbsp;&nbsp;Anggota</i></a></li>
             <li><a href="peminjaman.php"><i class="fa fa-gear">&nbsp;&nbsp;&nbsp;Peminjaman</i></a></li>
             <li><a href="pengembalian.php"><i class="fa fa-book">&nbsp;&nbsp;&nbsp;Pengembalian</i></a></li>
           </ul>
-          
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
          <h2 class="page-header">Tambah Peminjaman</h2>
-        
-          <form role="form1" action="prosestambahpeminjaman.php" method="post">  
+
+          <form role="form1" action="prosestambahpeminjaman.php" method="post">
              <table>
                  <div class = "box-body">
-                     <div class ="form-group">
-                    <label for="exampleInputEmail1">ID Peminjaman</label>
-                    <input type="text" name="id_peminjaman" class="form-control" placeholder="ID Peminjaman..." required>
-                    </div>
-                   
 
                     <div class ="form-group">
                     <label for="">Pilih Barang</label>
@@ -91,8 +86,8 @@ include "config/koneksi.php" ?>
                         <option value="" selected disabled>- Pilih Barang -</option>
                         <?php
                           $sql = "select * from barang";
-                          $query = mysql_query($sql);
-                          while ($data = mysql_fetch_array($query)) {
+                          $query = $mysqli->query($sql);
+                          while ($data = mysqli_fetch_array($query)) {
                          ?>
 
                          <option value="<?php echo $data['id_brg'] ?>"><?php echo $data['nama_brg'] ?></option>
@@ -103,21 +98,21 @@ include "config/koneksi.php" ?>
                       <select name="nama_peminjam" class="form-control">
                         <option value="" selected disabled>- Nama Peminjam -</option>
                         <?php
-                          $sql = "select * from peminjam";
-                          $query = mysql_query($sql);
-                          while ($data = mysql_fetch_array($query)) {
+                          $sql = "select * from anggota";
+                          $query = $mysqli->query($sql);
+                          while ($data = mysqli_fetch_array($query)) {
                          ?>
 
-                         <option value="<?php echo $data['id_peminjam'] ?>"><?php echo $data['nama'] ?></option>
+                         <option value="<?php echo $data['id_anggota'] ?>"><?php echo $data['nama'] ?></option>
                          <?php } ?>
                       </select>
                     </div>
                      <div class ="form-group">
                     <label for="exampleInputPassword1">Tanggal Pinjam</label>
-                    <input type="date"   name="tgl_pinjam" 
+                    <input type="date"   name="tgl_pinjam"
                     class="form-control datepicker" placeholder="Tanggal Pinjam..." required>
                     </div>
-                     
+
               <div class="box=footer">
             </div>
             <tr>
