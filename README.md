@@ -1,6 +1,6 @@
 # Peminjaman-Alat
 # oleh Samuel Pasaribu
-# XII RPL 2
+# Teknik Informatika, S.Kom
 
 # Copyright & License
   Copyright (c) 2019 Samuel Pasaribu GNU Public Lice
