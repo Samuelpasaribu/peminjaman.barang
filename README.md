@@ -1,5 +1,5 @@
 # Peminjaman-Alat
-# oleh Etika Restian Sari
+# oleh Samuel Pasaribu
 # XII RPL 2
 
 # Copyright & License
